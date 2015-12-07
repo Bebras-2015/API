@@ -1,0 +1,15 @@
+homepage:
+    pattern:  /
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: get_students
+        _format: json
+        permanent: true # this for 301
+
+bebras_student:
+    resource: "@BebrasBundle/Controller/StudentController.php"
+    type:     rest
+
+NelmioApiDocBundle:
+  resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+  prefix:   /api/doc
