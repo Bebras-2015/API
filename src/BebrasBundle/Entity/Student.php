@@ -41,6 +41,8 @@ class Student
     /**
      * @var string
      *
+     * @Expose
+     *
      * @ORM\Column(name="school", type="text", nullable=false)
      */
     private $school;
