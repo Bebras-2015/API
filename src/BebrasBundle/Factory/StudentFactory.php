@@ -16,7 +16,6 @@ class StudentFactory
      */
     public static function createFromArray(array $data)
     {
-        return new Student($data['full_name'], $data['school'], $data['score']);
+        return new Student($data['full_name'], $data['school'], $data['grander'], $data['score']);
     }
 }
- 

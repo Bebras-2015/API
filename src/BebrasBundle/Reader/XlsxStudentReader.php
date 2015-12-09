@@ -31,16 +31,19 @@ class XlsxStudentReader
                 $data = [];
 
                 /** @var \PHPExcel_Cell $cell */
-                foreach ($row->getCellIterator('A', 'C') as $cell) {
+                foreach ($row->getCellIterator('A', 'D') as $cell) {
                     switch ($cell->getColumn()) {
                         case 'A':
-                            $data['full_name'] = $cell->getValue();
+                            $data['grander'] = (int)$cell->getValue();
                             break;
                         case 'B':
-                            $data['school'] = $cell->getValue();
+                            $data['full_name'] = $cell->getValue();
                             break;
                         case 'C':
-                            $data['score'] = $cell->getValue();
+                            $data['school'] = $cell->getValue();
+                            break;
+                        case 'D':
+                            $data['score'] = (float)$cell->getValue();
                             break;
                     }
                 }

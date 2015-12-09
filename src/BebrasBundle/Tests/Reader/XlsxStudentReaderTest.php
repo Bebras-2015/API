@@ -23,6 +23,7 @@ class XlsxStudentReaderTest extends TestCase
 
             $this->assertEquals('Moksleivis ' . $index, $student->getFullName());
             $this->assertEquals('Mokykla ' . $index, $student->getSchool());
+            $this->assertEquals($index, $student->getGrader());
             $this->assertEquals($index, $student->getScore());
         }
     }

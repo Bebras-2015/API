@@ -32,12 +32,11 @@ class StudentController extends FOSRestController
      * @Annotations\QueryParam(name="offset", requirements="\d+", nullable=true, description="Offset from which to start listing students.")
      * @Annotations\QueryParam(name="limit", requirements="\d+", default="10", description="How many students to return.")
      *
-     * @param Request               $request
      * @param ParamFetcherInterface $paramFetcher
      *
      * @return array
      */
-    public function getStudentsAction(Request $request, ParamFetcherInterface $paramFetcher)
+    public function getStudentsAction(ParamFetcherInterface $paramFetcher)
     {
         $offset = $paramFetcher->get('offset');
         $limit = $paramFetcher->get('limit');
@@ -58,14 +57,13 @@ class StudentController extends FOSRestController
      *   }
      * )
      *
-     * @param Request $request
-     * @param int     $id
+     * @param int $id
      *
      * @return array
      *
      * @throws NotFoundHttpException
      */
-    public function getStudentAction(Request $request, $id)
+    public function getStudentAction($id)
     {
         $student = $this->getStudentOr404($id);
 

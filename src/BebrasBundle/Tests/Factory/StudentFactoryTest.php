@@ -12,12 +12,12 @@ class StudentFactoryTest extends TestCase
 {
     public function testCreateFromArray()
     {
-        $data = ['full_name' => 'Test full name', 'school' => 'Test school', 'score' => 1];
+        $data = ['full_name' => 'Test full name', 'school' => 'Test school', 'grander' => 9, 'score' => 1];
         $student = StudentFactory::createFromArray($data);
 
         $this->assertEquals($data['full_name'], $student->getFullName());
         $this->assertEquals($data['school'], $student->getSchool());
+        $this->assertEquals($data['grander'], $student->getGrader());
         $this->assertEquals($data['score'], $student->getScore());
     }
 }
- 

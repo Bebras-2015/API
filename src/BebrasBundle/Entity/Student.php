@@ -46,6 +46,15 @@ class Student
     private $school;
 
     /**
+     * @var int
+     *
+     * @Expose
+     *
+     * @ORM\Column(name="grander", type="smallint", nullable=false)
+     */
+    private $grader;
+
+    /**
      * @var float
      *
      * @Expose
@@ -73,12 +82,14 @@ class Student
      *
      * @param string $fullName
      * @param string $school
-     * @param float  $score
+     * @param int $grader
+     * @param float $score
      */
-    public function __construct($fullName, $school, $score)
+    public function __construct($fullName, $school, $grader, $score)
     {
         $this->fullName = $fullName;
         $this->school = $school;
+        $this->grader = $grader;
         $this->score = $score;
 
         $this->createdAt = new \DateTime();
@@ -106,6 +117,14 @@ class Student
     public function getSchool()
     {
         return $this->school;
+    }
+
+    /**
+     * @return int
+     */
+    public function getGrader()
+    {
+        return $this->grader;
     }
 
     /**
@@ -142,4 +161,3 @@ class Student
         return $this;
     }
 }
- 
