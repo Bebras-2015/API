@@ -29,8 +29,10 @@ class StudentController extends FOSRestController
      *   }
      * )
      *
-     * @Annotations\QueryParam(name="offset", requirements="\d+", nullable=true, description="Offset from which to start listing students.")
-     * @Annotations\QueryParam(name="limit", requirements="\d+", default="10", description="How many students to return.")
+     * @Annotations\QueryParam(name="offset", requirements="\d+", nullable=true, description="Offset from which to
+     *                                        start listing students.")
+     * @Annotations\QueryParam(name="limit", requirements="\d+", default="10", description="How many students to
+     *                                       return.")
      *
      * @param ParamFetcherInterface $paramFetcher
      *
@@ -71,6 +73,31 @@ class StudentController extends FOSRestController
     }
 
     /**
+     * Get statistics for single student.
+     *
+     * @ApiDoc(
+     *   statusCodes = {
+     *     200 = "Returned when successful",
+     *     404 = "Returned when the student was not found"
+     *   }
+     * )
+     *
+     * @param int $id
+     *
+     * @return array
+     *
+     * @throws NotFoundHttpException
+     */
+    public function getStudentStatisticsAction($id)
+    {
+        $student = $this->getStudentOr404($id);
+
+        $statistics = $this->getStatisticHelper()->getStudentStatistics($student);
+
+        return $statistics;
+    }
+
+    /**
      * @return StudentRepository
      */
     private function getRepository()
@@ -94,5 +121,10 @@ class StudentController extends FOSRestController
         }
 
         return $student;
+    }
+
+    private function getStatisticHelper()
+    {
+        return $this->container->get('bebras.helper.statistic');
     }
 }
