@@ -29,10 +29,8 @@ class StudentController extends FOSRestController
      *   }
      * )
      *
-     * @Annotations\QueryParam(name="offset", requirements="\d+", nullable=true, description="Offset from which to
-     *                                        start listing students.")
-     * @Annotations\QueryParam(name="limit", requirements="\d+", default="10", description="How many students to
-     *                                       return.")
+     * @Annotations\QueryParam(name="offset", requirements="\d+", nullable=true, description="Offset from which to start listing students.")
+     * @Annotations\QueryParam(name="limit", requirements="\d+", default="10", description="How many students to return.")
      *
      * @param ParamFetcherInterface $paramFetcher
      *

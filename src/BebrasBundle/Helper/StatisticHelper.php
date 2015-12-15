@@ -30,7 +30,7 @@ class StatisticHelper
         $scoresByGrade = $this->repository->getStudentsByGrade($student->getGrader());
 
         $byGrade = $this->calculateStatistics($scoresByGrade, $student->getScore());
-        $statistics['by_grade'] = $byGrade;
+        $statistics['by_grader'] = $byGrade;
 
         $scoresBySchool = $this->repository->getStudentsBySchool($student->getSchool());
 
