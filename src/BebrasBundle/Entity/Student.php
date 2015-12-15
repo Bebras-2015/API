@@ -66,6 +66,15 @@ class Student
     private $score;
 
     /**
+     * @var string
+     *
+     * @Expose
+     *
+     * @ORM\Column(name="grander_group", type="string", length=255, nullable=false)
+     */
+    private $group;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=false)
@@ -86,13 +95,15 @@ class Student
      * @param string $school
      * @param int $grader
      * @param float $score
+     * @param string $group
      */
-    public function __construct($fullName, $school, $grader, $score)
+    public function __construct($fullName, $school, $grader, $score, $group)
     {
         $this->fullName = $fullName;
         $this->school = $school;
         $this->grader = $grader;
         $this->score = $score;
+        $this->group = $group;
 
         $this->createdAt = new \DateTime();
     }
@@ -135,6 +146,14 @@ class Student
     public function getScore()
     {
         return $this->score;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGroup()
+    {
+        return $this->group;
     }
 
     /**

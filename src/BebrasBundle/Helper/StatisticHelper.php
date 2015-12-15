@@ -11,6 +11,8 @@ use BebrasBundle\Entity\Student;
 class StatisticHelper
 {
     /**
+     * Constructor.
+     *
      * @param StudentRepository $repository
      */
     public function __construct(StudentRepository $repository)
@@ -27,38 +29,27 @@ class StatisticHelper
     {
         $statistics = [];
 
-        $scoresByGrade = $this->repository->getStudentsByGrade($student->getGrader());
+        $maxScore = $this->repository->getMaxScoreByGroup($student->getGroup());
 
-        $byGrade = $this->calculateStatistics($scoresByGrade, $student->getScore());
+        $byGrade = $this->calculateStatistics($maxScore, $student->getScore());
         $statistics['by_grader'] = $byGrade;
 
-        $scoresBySchool = $this->repository->getStudentsBySchool($student->getSchool());
+        $maxScore = $this->repository->getMaxScore();
 
-        $bySchool = $this->calculateStatistics($scoresBySchool, $student->getScore());
-        $statistics['by_school'] = $bySchool;
+        $byAll = $this->calculateStatistics($maxScore, $student->getScore());
+        $statistics['by_all'] = $byAll;
 
         return $statistics;
     }
 
     /**
-     * @param array $scores
+     * @param float $maxScore
      * @param float $studentScore
      *
      * @return float
      */
-    private function calculateStatistics(array $scores, $studentScore)
+    private function calculateStatistics($maxScore, $studentScore)
     {
-        if (1 === count($scores)) {
-            return 100;
-        }
-
-        $betterThan = 0;
-        foreach ($scores as $score) {
-            if ($studentScore > $score['score']) {
-                $betterThan++;
-            }
-        }
-
-        return ($betterThan / (count($scores) - 1)) * 100;
+        return ($studentScore / $maxScore) * 100;
     }
 }
