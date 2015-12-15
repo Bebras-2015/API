@@ -11,23 +11,6 @@ use Doctrine\ORM\EntityRepository;
 class StudentRepository extends EntityRepository
 {
     /**
-     * @param int $offset
-     * @param int $limit
-     *
-     * @return array|Student[]
-     */
-    public function getStudents($offset, $limit)
-    {
-        $qb = $this->createQueryBuilder('s');
-
-        $qb
-            ->setFirstResult($offset)
-            ->setMaxResults($limit);
-
-        return $qb->getQuery()->getResult();
-    }
-
-    /**
      * @param float $grade
      *
      * @return array

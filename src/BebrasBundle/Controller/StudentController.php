@@ -6,11 +6,9 @@ use BebrasBundle\Entity\Repository\StudentRepository;
 use BebrasBundle\Entity\Student;
 use FOS\RestBundle\Controller\Annotations;
 use FOS\RestBundle\Controller\FOSRestController;
-use FOS\RestBundle\Request\ParamFetcherInterface;
 
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
@@ -18,7 +16,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class StudentController extends FOSRestController
 {
-
     /**
      * List all students.
      *
@@ -29,19 +26,11 @@ class StudentController extends FOSRestController
      *   }
      * )
      *
-     * @Annotations\QueryParam(name="offset", requirements="\d+", nullable=true, description="Offset from which to start listing students.")
-     * @Annotations\QueryParam(name="limit", requirements="\d+", default="10", description="How many students to return.")
-     *
-     * @param ParamFetcherInterface $paramFetcher
-     *
      * @return array
      */
-    public function getStudentsAction(ParamFetcherInterface $paramFetcher)
+    public function getStudentsAction()
     {
-        $offset = $paramFetcher->get('offset');
-        $limit = $paramFetcher->get('limit');
-
-        $students = $this->getRepository()->getStudents($offset, $limit);
+        $students = $this->getRepository()->findAll();
 
         return $students;
     }
