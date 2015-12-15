@@ -14,23 +14,22 @@ final class StudentUtil
      */
     public static function getGroup($grader)
     {
-        if (3 === $grader || 4 === $grader) {
-            return 'Mažyliai';
+        switch ($grader) {
+            case 3:
+            case 4:
+                return 'Mažyliai';
+            case 5:
+            case 6:
+                return 'Bičiuliai';
+            case 7:
+            case 8:
+                return 'Draugai';
+            case 9:
+            case 10:
+                return 'Jauniai';
+            default:
+                return 'Kolegos';
         }
-
-        if (5 === $grader || 6 === $grader) {
-            return 'Bičiuliai';
-        }
-
-        if (7 === $grader || 8 === $grader) {
-            return 'Draugai';
-        }
-
-        if (9 === $grader || 10 === $grader) {
-            return 'Jauniai';
-        }
-
-        return 'Kolegos';
     }
 }
  
