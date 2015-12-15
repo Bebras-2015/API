@@ -16,7 +16,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class StudentController extends FOSRestController
 {
-
     /**
      * List all students.
      *
@@ -61,6 +60,31 @@ class StudentController extends FOSRestController
     }
 
     /**
+     * Get statistics for single student.
+     *
+     * @ApiDoc(
+     *   statusCodes = {
+     *     200 = "Returned when successful",
+     *     404 = "Returned when the student was not found"
+     *   }
+     * )
+     *
+     * @param int $id
+     *
+     * @return array
+     *
+     * @throws NotFoundHttpException
+     */
+    public function getStudentStatisticsAction($id)
+    {
+        $student = $this->getStudentOr404($id);
+
+        $statistics = $this->getStatisticHelper()->getStudentStatistics($student);
+
+        return $statistics;
+    }
+
+    /**
      * @return StudentRepository
      */
     private function getRepository()
@@ -84,5 +108,10 @@ class StudentController extends FOSRestController
         }
 
         return $student;
+    }
+
+    private function getStatisticHelper()
+    {
+        return $this->container->get('bebras.helper.statistic');
     }
 }

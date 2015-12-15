@@ -18,6 +18,7 @@ class BebrasExtension extends Extension
     public function load(array $configs, ContainerBuilder $container)
     {
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('helpers.xml');
         $loader->load('readers.xml');
         $loader->load('repositories.xml');
         $loader->load('savers.xml');
