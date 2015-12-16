@@ -19,7 +19,7 @@ class StudentRepository extends EntityRepository
         $qb = $this->createQueryBuilder('s');
 
         $qb
-            ->select('MAX(s.score)');
+            ->select($qb->expr()->max('s.score'));
 
         try {
             return $qb->getQuery()->getSingleScalarResult();
@@ -39,7 +39,7 @@ class StudentRepository extends EntityRepository
         $qb = $this->createQueryBuilder('s');
 
         $qb
-            ->select('MAX(s.score)')
+            ->select($qb->expr()->max('s.score'))
             ->where($qb->expr()->eq('s.group', ':group'))
             ->setParameter('group', $group);
 
