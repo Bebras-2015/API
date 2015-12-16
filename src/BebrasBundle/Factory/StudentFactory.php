@@ -20,9 +20,9 @@ class StudentFactory
         return new Student(
             $data['full_name'],
             $data['school'],
-            $data['grander'],
+            $data['grade'],
             $data['score'],
-            StudentUtil::getGroup($data['grander'])
+            StudentUtil::getGroup($data['grade'])
         );
     }
 }

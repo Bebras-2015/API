@@ -15,18 +15,18 @@ class StudentStatistic
     /**
      * @var float
      */
-    private $byGrander;
+    private $byGrade;
 
     /**
      * Constructor.
      *
      * @param float $byAll
-     * @param float $byGrander
+     * @param float $byGrade
      */
-    public function __construct($byAll, $byGrander)
+    public function __construct($byAll, $byGrade)
     {
         $this->byAll = $byAll;
-        $this->byGrander = $byGrander;
+        $this->byGrade = $byGrade;
     }
 
     /**
@@ -40,8 +40,8 @@ class StudentStatistic
     /**
      * @return float
      */
-    public function getByGrander()
+    public function getByGrade()
     {
-        return $this->byGrander;
+        return $this->byGrade;
     }
 }

@@ -34,7 +34,7 @@ class XlsxStudentReader
                 foreach ($row->getCellIterator('A', 'D') as $cell) {
                     switch ($cell->getColumn()) {
                         case 'A':
-                            $data['grander'] = (int)$cell->getValue();
+                            $data['grade'] = (int)$cell->getValue();
                             break;
                         case 'B':
                             $data['full_name'] = $cell->getValue();

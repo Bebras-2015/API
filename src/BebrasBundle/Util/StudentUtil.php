@@ -8,13 +8,13 @@ namespace BebrasBundle\Util;
 final class StudentUtil
 {
     /**
-     * @param int $grader
+     * @param int $grade
      *
      * @return string
      */
-    public static function getGroup($grader)
+    public static function getGroup($grade)
     {
-        switch ($grader) {
+        switch ($grade) {
             case 3:
             case 4:
                 return 'Mažyliai';
