@@ -5,6 +5,7 @@ namespace BebrasBundle\Controller;
 use BebrasBundle\Entity\Repository\StudentRepository;
 use BebrasBundle\Entity\Student;
 use BebrasBundle\Factory\StudentStatisticFactory;
+use BebrasBundle\Model\StudentStatistic;
 use FOS\RestBundle\Controller\Annotations;
 use FOS\RestBundle\Controller\FOSRestController;
 
@@ -72,16 +73,16 @@ class StudentController extends FOSRestController
      *
      * @param int $id
      *
-     * @return array
+     * @return StudentStatistic
      *
      * @throws NotFoundHttpException
      */
     public function getStudentStatisticsAction($id)
     {
         $student = $this->getStudentOr404($id);
-        $statistics = $this->getStatistcFactory()->create($student);
+        $statistic = $this->getStatisticFactory()->create($student);
 
-        return $statistics;
+        return $statistic;
     }
 
     /**
@@ -113,7 +114,7 @@ class StudentController extends FOSRestController
     /**
      * @return StudentStatisticFactory
      */
-    private function getStatistcFactory()
+    private function getStatisticFactory()
     {
         return $this->container->get('bebras.factory.student_statistic');
     }

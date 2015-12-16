@@ -18,4 +18,3 @@ final class StatisticUtil
         return ($studentScore / $maxScore) * 100;
     }
 }
- 

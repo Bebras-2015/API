@@ -43,4 +43,3 @@ class StudentStatisticFactory
         return new StudentStatistic($byAll, $byGrade);
     }
 }
- 
