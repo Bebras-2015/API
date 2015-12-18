@@ -6,9 +6,10 @@
 
     <services>
 
-        <service id="bebras.helper.statistic" class="BebrasBundle\Helper\StatisticHelper" >
+        <service id="bebras.factory.student_statistic" class="BebrasBundle\Factory\StudentStatisticFactory" >
             <argument type="service" id="bebras.repository.student" />
         </service>
+
     </services>
 
 </container>

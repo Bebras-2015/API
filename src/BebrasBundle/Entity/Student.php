@@ -52,9 +52,9 @@ class Student
      *
      * @Expose
      *
-     * @ORM\Column(name="grander", type="smallint", nullable=false)
+     * @ORM\Column(name="grade", type="smallint", nullable=false)
      */
-    private $grader;
+    private $grade;
 
     /**
      * @var float
@@ -64,6 +64,15 @@ class Student
      * @ORM\Column(name="score", type="decimal", precision=4, scale=2, nullable=false)
      */
     private $score;
+
+    /**
+     * @var string
+     *
+     * @Expose
+     *
+     * @ORM\Column(name="grade_group", type="string", length=255, nullable=false)
+     */
+    private $group;
 
     /**
      * @var \DateTime
@@ -84,15 +93,17 @@ class Student
      *
      * @param string $fullName
      * @param string $school
-     * @param int $grader
+     * @param int $grade
      * @param float $score
+     * @param string $group
      */
-    public function __construct($fullName, $school, $grader, $score)
+    public function __construct($fullName, $school, $grade, $score, $group)
     {
         $this->fullName = $fullName;
         $this->school = $school;
-        $this->grader = $grader;
+        $this->grade = $grade;
         $this->score = $score;
+        $this->group = $group;
 
         $this->createdAt = new \DateTime();
     }
@@ -124,9 +135,9 @@ class Student
     /**
      * @return int
      */
-    public function getGrader()
+    public function getGrade()
     {
-        return $this->grader;
+        return $this->grade;
     }
 
     /**
@@ -135,6 +146,14 @@ class Student
     public function getScore()
     {
         return $this->score;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGroup()
+    {
+        return $this->group;
     }
 
     /**

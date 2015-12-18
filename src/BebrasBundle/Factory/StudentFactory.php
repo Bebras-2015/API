@@ -3,6 +3,7 @@
 namespace BebrasBundle\Factory;
 
 use BebrasBundle\Entity\Student;
+use BebrasBundle\Util\StudentUtil;
 
 /**
  * @author Tadas Gliaubicas
@@ -16,6 +17,12 @@ class StudentFactory
      */
     public static function createFromArray(array $data)
     {
-        return new Student($data['full_name'], $data['school'], $data['grander'], $data['score']);
+        return new Student(
+            $data['full_name'],
+            $data['school'],
+            $data['grade'],
+            $data['score'],
+            StudentUtil::getGroup($data['grade'])
+        );
     }
 }

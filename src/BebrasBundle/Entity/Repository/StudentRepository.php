@@ -4,6 +4,7 @@ namespace BebrasBundle\Entity\Repository;
 
 use BebrasBundle\Entity\Student;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\NoResultException;
 
 /**
  * @author Tadas Gliaubicas
@@ -11,36 +12,42 @@ use Doctrine\ORM\EntityRepository;
 class StudentRepository extends EntityRepository
 {
     /**
-     * @param float $grade
-     *
-     * @return array
+     * @return float
      */
-    public function getStudentsByGrade($grade)
+    public function getMaxScore()
     {
         $qb = $this->createQueryBuilder('s');
 
         $qb
-            ->select('s.score')
-            ->where('s.grader = :grade')
-            ->setParameter('grade', $grade);
+            ->select($qb->expr()->max('s.score'));
 
-        return $qb->getQuery()->getResult();
+        try {
+            return $qb->getQuery()->getSingleScalarResult();
+        } catch (NoResultException $e) {
+        }
+
+        return 0;
     }
 
     /**
-     * @param string $school
+     * @param string $group
      *
-     * @return array
+     * @return float
      */
-    public function getStudentsBySchool($school)
+    public function getMaxScoreByGroup($group)
     {
         $qb = $this->createQueryBuilder('s');
 
         $qb
-            ->select('s.score')
-            ->where('s.school = :school')
-            ->setParameter('school', $school);
+            ->select($qb->expr()->max('s.score'))
+            ->where($qb->expr()->eq('s.group', ':group'))
+            ->setParameter('group', $group);
 
-        return $qb->getQuery()->getResult();
+        try {
+            return $qb->getQuery()->getSingleScalarResult();
+        } catch (NoResultException $e) {
+        }
+
+        return 0;
     }
 }
