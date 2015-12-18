@@ -13,3 +13,6 @@ parameters:
 
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    router.request_context.scheme: api.bebras.lt
+    router.request_context.host: http

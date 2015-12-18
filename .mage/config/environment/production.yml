@@ -1,0 +1,36 @@
+#foxshop-beta
+deployment:
+    strategy: rsync
+    user: user
+    from: ./
+    to: /var/www/clients/client7/web11/web/api
+    excludes:
+        - .idea
+        - .git
+        - app/cache/*
+        - app/config/parameters.yml
+        - app/logs
+        - web/.htaccess
+releases:
+    enabled: true
+    max: 3
+    symlink: current
+    directory: releases
+hosts:
+      - localhost
+tasks:
+    pre-deploy:
+        - composer/install
+        - composer/generate-autoload
+    on-deploy:
+        - filesystem/link-shared-files:
+            linked_files:
+                - app/config/parameters.yml
+            linked_folders:
+                - app/logs
+        - symfony2/cache-warmup: {env:prod}
+        - cache-permissions
+        - symfony2/cache-warmup: {env:prod_cli}
+    post-release:
+        - accelerator-cache-clear: {env:prod_cli}
+    post-deploy:
