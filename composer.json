@@ -1,8 +1,6 @@
 {
-    "name": "gimler/symfony-rest-edition",
-    "license": "MIT",
+    "name": "bebras/api",
     "type": "project",
-    "description": "The \"Symfony REST Edition\" distribution",
     "autoload": {
         "psr-4": { "": "src/" }
     },
@@ -58,9 +56,6 @@
         "symfony-assets-install": "relative",
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
-        },
-        "branch-alias": {
-            "dev-master": "2.7-dev"
         }
     }
 }

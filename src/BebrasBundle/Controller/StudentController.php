@@ -11,6 +11,7 @@ use FOS\RestBundle\Controller\FOSRestController;
 
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
@@ -34,7 +35,7 @@ class StudentController extends FOSRestController
     {
         $students = $this->getRepository()->findAll();
 
-        return $students;
+        return $this->createResponse($students);
     }
 
     /**
@@ -58,7 +59,7 @@ class StudentController extends FOSRestController
     {
         $student = $this->getStudentOr404($id);
 
-        return $student;
+        return $this->createResponse($student);
     }
 
     /**
@@ -82,7 +83,7 @@ class StudentController extends FOSRestController
         $student = $this->getStudentOr404($id);
         $statistic = $this->getStatisticFactory()->create($student);
 
-        return $statistic;
+        return $this->createResponse($statistic);
     }
 
     /**
@@ -117,5 +118,17 @@ class StudentController extends FOSRestController
     private function getStatisticFactory()
     {
         return $this->container->get('bebras.factory.student_statistic');
+    }
+
+    /**
+     * @param $data
+     *
+     * @return Response
+     */
+    private function createResponse($data)
+    {
+        $data = $this->container->get('serializer')->serialize($data, 'json');
+
+        return new Response($data, 201, array('Access-Control-Allow-Origin' => '*', 'Content-Type' => 'application/json'));
     }
 }
