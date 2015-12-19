@@ -43,7 +43,7 @@ class XlsxStudentReader
                             $data['school'] = $cell->getValue();
                             break;
                         case 'D':
-                            $data['score'] = (float)$cell->getValue();
+                            $data['score'] = floatval($cell->getValue());
                             break;
                     }
                 }

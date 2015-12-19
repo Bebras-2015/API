@@ -61,7 +61,7 @@ class Student
      *
      * @Expose
      *
-     * @ORM\Column(name="score", type="decimal", precision=4, scale=2, nullable=false)
+     * @ORM\Column(name="score", type="decimal", precision=10, scale=2, nullable=false)
      */
     private $score;
 
